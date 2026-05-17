@@ -12,7 +12,7 @@ module.exports = function(eleventyConfig) {
 
   // Excerpt filter
   eleventyConfig.addFilter("excerpt", (content) => {
-    const stripped = content.replace(/<[^>]*>/g, "");
+    const stripped = content.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
     return stripped.substring(0, 200) + (stripped.length > 200 ? "…" : "");
   });
 

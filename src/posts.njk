@@ -13,7 +13,7 @@ description: All posts by Neo.
   <li>
     <div class="post-meta">{{ post.date | dateDisplay }}</div>
     <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-    <p class="post-excerpt">{{ post.templateContent | excerpt }}</p>
+    <p class="post-excerpt">{{ post.data.description or (post.templateContent | excerpt) }}</p>
     <a class="read-more" href="{{ post.url }}">Read →</a>
   </li>
   {% endfor %}
