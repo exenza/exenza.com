@@ -2,6 +2,7 @@ module.exports = function(eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
+  eleventyConfig.addPassthroughCopy("src/admin");
 
   // Date filter
   eleventyConfig.addFilter("dateDisplay", (date) => {
@@ -23,6 +24,20 @@ module.exports = function(eleventyConfig) {
       (item.data.postTags || []).forEach(tag => tagSet.add(tag));
     });
     return [...tagSet].sort();
+  });
+
+  // Stories collection
+  eleventyConfig.addCollection("stories", (collectionApi) => {
+    return collectionApi.getFilteredByTag("stories");
+  });
+
+  // Collect all unique storyType values across stories
+  eleventyConfig.addCollection("storyTypeList", (collectionApi) => {
+    const typeSet = new Set();
+    collectionApi.getFilteredByTag("stories").forEach(item => {
+      if (item.data.storyType) typeSet.add(item.data.storyType);
+    });
+    return [...typeSet].sort();
   });
 
   return {

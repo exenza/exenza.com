@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: exenza/exenza.com
+  branch: main
+
+media_folder: src/assets/img
+public_folder: /assets/img
+
+collections:
+  - name: stories
+    label: Stories
+    label_singular: Story
+    folder: src/stories
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, picker_utc: true }
+      - { label: Description, name: description, widget: string }
+      - { label: Featured Image, name: image, widget: image, required: false, media_folder: /src/assets/img/stories, public_folder: /assets/img/stories }
+      - label: Type
+        name: storyType
+        widget: select
+        options:
+          - { label: Short Story, value: short story }
+          - { label: Poem, value: poem }
+          - { label: Poesia (Italian), value: poesia }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: blog
+    label: Blog
+    label_singular: Post
+    folder: src/posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, picker_utc: true }
+      - { label: Description, name: description, widget: string }
+      - { label: Featured Image, name: image, widget: image, required: false, media_folder: /src/assets/img/blog, public_folder: /assets/img/blog }
+      - label: Tags
+        name: postTags
+        widget: list
+        required: false
+        hint: "Comma-separated tags (e.g. homelab, automation)"
+      - { label: Body, name: body, widget: markdown }
+
+  - name: pages
+    label: Pages
+    files:
+      - label: About
+        name: about
+        file: src/about.njk
+        fields:
+          - { label: Title, name: title, widget: hidden, default: About }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+      - label: Home Hero
+        name: index
+        file: src/index.njk
+        fields:
+          - { label: Site Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }

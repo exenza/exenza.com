@@ -10,30 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 </head>
 <body>
-  <div id="page-bg"></div>
-  <script>
-    (function() {
-      var imgs = [
-        '/assets/img/stories/red-laced.jpg',
-        '/assets/img/stories/chasing-happiness.jpg',
-        '/assets/img/stories/a-blessing-a-curse.webp',
-        '/assets/img/stories/gerald-fog.jpg',
-        '/assets/img/stories/the-baker.jpg',
-        '/assets/img/stories/a-conversation-with-oscar.jpg',
-        '/assets/img/stories/the-julian-case.jpg',
-        '/assets/img/stories/random.jpg',
-        '/assets/img/stories/ero.jpg',
-        '/assets/img/stories/always-right.jpg',
-        '/assets/img/stories/friends.jpg',
-        '/assets/img/stories/lazy-writer.jpg',
-        '/assets/img/stories/ei.jpg',
-        '/assets/img/stories/circus.jpg',
-        '/assets/img/stories/particelle.jpg'
-      ];
-      var url = imgs[Math.floor(Math.random() * imgs.length)];
-      document.getElementById('page-bg').style.backgroundImage = 'url("' + url + '")';
-    })();
-  </script>
+  <div id="page-bg" style="background-image: url('{{ image }}')"></div>
   <header>
     <nav>
       <a href="/" class="logo">
@@ -56,13 +33,16 @@
       {% endif %}
       <div class="post-header">
         <h1>{{ title }}</h1>
-        <div class="post-meta"><time>{{ date | dateDisplay }}</time></div>
+        <div class="post-meta">
+          <time>{{ date | dateDisplay }}</time>
+          {% if storyType %}<span class="tag-chip">{{ storyType }}</span>{% endif %}
+        </div>
       </div>
       <div class="post-content">
         {{ content | safe }}
       </div>
       <div class="post-footer">
-        <a href="/blog/">← blog</a>
+        <a href="/stories/">← stories</a>
       </div>
     </div>
   </main>

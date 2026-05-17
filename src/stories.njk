@@ -1,0 +1,72 @@
+---
+layout: base.njk
+title: Stories
+description: Creative writing by Max — short stories and poems.
+---
+
+<h1 class="page-title">Stories</h1>
+
+<nav class="stories-filter">
+  <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+  <button class="filter-btn" data-filter="short story" id="filter-short-story">Short Stories</button>
+  <button class="filter-btn" data-filter="poem" id="filter-poem">Poems</button>
+  <button class="filter-btn" data-filter="poesia" id="filter-poesia">Poesie 🇮🇹</button>
+</nav>
+
+<div class="posts-container" id="stories-list">
+  {% set stories = collections.stories | reverse %}
+  {% if stories.length %}
+    {% for story in stories %}
+    <article class="post-card" data-type="{{ story.data.storyType }}">
+      <div class="post-card-content">
+        {% if story.data.image %}
+        <a href="{{ story.url }}" class="story-thumb-link">
+          <img src="{{ story.data.image }}" alt="{{ story.data.title }}" class="story-thumb">
+        </a>
+        {% endif %}
+        <div class="post-body">
+          <div class="post-meta">
+            <time>{{ story.date | dateDisplay }}</time>
+            {% if story.data.storyType %}<span class="tag-chip">{{ story.data.storyType }}</span>{% endif %}
+          </div>
+          <h2 class="post-title"><a href="{{ story.url }}">{{ story.data.title }}</a></h2>
+          <p class="post-excerpt">{{ story.data.description }}</p>
+          <a class="read-more" href="{{ story.url }}">read →</a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  {% else %}
+    <p style="color:var(--muted)">Coming soon.</p>
+  {% endif %}
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#stories-list .post-card');
+
+  function applyFilter(filter) {
+    buttons.forEach(b => b.classList.remove('active'));
+    const active = document.querySelector(`[data-filter="${filter}"]`) || document.querySelector('[data-filter="all"]');
+    active.classList.add('active');
+    cards.forEach(card => {
+      card.style.display = (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
+    });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      history.replaceState(null, '', filter === 'all' ? '/stories/' : `/stories/#${filter.replace(' ', '-')}`);
+      applyFilter(filter);
+    });
+  });
+
+  // Activate filter from URL hash on page load
+  const hash = location.hash.slice(1);
+  if (hash) {
+    const filter = hash.replace('-', ' ');
+    applyFilter(filter);
+    document.getElementById(`filter-${hash}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
