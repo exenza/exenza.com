@@ -23,7 +23,20 @@ body {
   display: flex;
   flex-direction: column;
   border-top: 3px solid var(--blue);
+  position: relative;
 }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('/assets/img/matrix-rain.gif') center center / cover no-repeat;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 0;
+}
+
+header, main, footer { position: relative; z-index: 1; }
 
 /* ── Nav ── */
 header {
