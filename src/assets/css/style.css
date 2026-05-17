@@ -46,8 +46,8 @@ nav {
   gap: 0.5rem;
 }
 .nav-avatar {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   object-fit: cover;
   border: 1.5px solid var(--green);
