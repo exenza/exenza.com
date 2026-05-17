@@ -291,3 +291,22 @@ footer a:hover { color: var(--blue); }
 /* ── All posts page ── */
 h1.page-title { font-family: var(--mono); color: var(--blue); font-size: 1.8rem; margin-bottom: 1.5rem; }
 h1.page-title::before { content: "// "; color: var(--green); }
+
+/* Tag chips */
+.post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0.75rem; }
+.tag-chip {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--green);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tag-chip:hover { border-color: var(--green); color: var(--blue); text-decoration: none; }
+
+/* Topics list links */
+.topics-list li a { color: var(--muted); text-decoration: none; }
+.topics-list li a:hover { color: var(--green); }

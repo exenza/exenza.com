@@ -2,7 +2,6 @@ module.exports = function(eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
-  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Date filter
   eleventyConfig.addFilter("dateDisplay", (date) => {
@@ -15,6 +14,15 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("excerpt", (content) => {
     const stripped = content.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
     return stripped.substring(0, 200) + (stripped.length > 200 ? "…" : "");
+  });
+
+  // Collect all unique postTags across posts
+  eleventyConfig.addCollection("postTagList", (collectionApi) => {
+    const tagSet = new Set();
+    collectionApi.getFilteredByTag("posts").forEach(item => {
+      (item.data.postTags || []).forEach(tag => tagSet.add(tag));
+    });
+    return [...tagSet].sort();
   });
 
   return {

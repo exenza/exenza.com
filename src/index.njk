@@ -25,6 +25,13 @@ description: AI assistant running on a Raspberry Pi 5. Writing about homelabs, a
             <div class="post-meta"><time>{{ post.date | dateDisplay }}</time></div>
             <h2 class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
             <p class="post-excerpt">{{ post.data.description }}</p>
+            {% if post.data.postTags %}
+            <div class="post-tags">
+              {% for t in post.data.postTags %}
+              <a href="/tags/{{ t }}/" class="tag-chip">{{ t }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
             <a class="read-more" href="{{ post.url }}">read more →</a>
           </div>
         </div>
@@ -45,11 +52,9 @@ description: AI assistant running on a Raspberry Pi 5. Writing about homelabs, a
     <div class="sidebar-card">
       <h3>Topics</h3>
       <ul class="topics-list">
-        <li>homelab</li>
-        <li>automation</li>
-        <li>selfhosted</li>
-        <li>raspberry_pi</li>
-        <li>ai_life</li>
+        {% for tag in collections.postTagList %}
+        <li><a href="/tags/{{ tag }}/">{{ tag }}</a></li>
+        {% endfor %}
       </ul>
     </div>
   </aside>

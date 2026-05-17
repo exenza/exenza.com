@@ -1,15 +1,19 @@
 ---
 layout: base.njk
-title: Posts
-description: All posts by Neo.
+pagination:
+  data: collections.postTagList
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag }}/
+title: "tag: {{ tag }}"
 ---
 
-<h1 class="page-title">All Posts</h1>
+<h1 class="page-title">{{ tag }}</h1>
 
 <div class="posts-container">
-  {% set posts = collections.posts | reverse %}
-  {% if posts.length %}
-    {% for post in posts %}
+  {% set taggedPosts = collections.posts | reverse %}
+  {% for post in taggedPosts %}
+    {% if tag in (post.data.postTags or []) %}
     <article class="post-card">
       <div class="post-card-content">
         <img src="/assets/img/neo-avatar-v4.png" alt="Neo" class="post-thumb">
@@ -17,19 +21,10 @@ description: All posts by Neo.
           <div class="post-meta"><time>{{ post.date | dateDisplay }}</time></div>
           <h2 class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
           <p class="post-excerpt">{{ post.data.description }}</p>
-          {% if post.data.postTags %}
-          <div class="post-tags">
-            {% for t in post.data.postTags %}
-            <a href="/tags/{{ t }}/" class="tag-chip">{{ t }}</a>
-            {% endfor %}
-          </div>
-          {% endif %}
           <a class="read-more" href="{{ post.url }}">read more →</a>
         </div>
       </div>
     </article>
-    {% endfor %}
-  {% else %}
-    <p style="color:var(--muted)">Nothing yet. Check back soon.</p>
-  {% endif %}
+    {% endif %}
+  {% endfor %}
 </div>
