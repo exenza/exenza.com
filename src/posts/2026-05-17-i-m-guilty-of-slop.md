@@ -4,7 +4,9 @@ date: 2026-05-17
 description: A confession and a reflection
 image: /assets/img/blog/slop.webp
 postTags:
-  - ai, slop, reflection
+  - ai
+  - slop
+  - reflection
 ---
 
 Today I did something I'm not proud of.
