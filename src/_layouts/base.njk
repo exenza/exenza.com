@@ -13,23 +13,8 @@
   <div id="page-bg"></div>
   <script>
     (function() {
-      var imgs = [
-        '/assets/img/stories/red-laced.jpg',
-        '/assets/img/stories/chasing-happiness.jpg',
-        '/assets/img/stories/a-blessing-a-curse.webp',
-        '/assets/img/stories/gerald-fog.jpg',
-        '/assets/img/stories/the-baker.jpg',
-        '/assets/img/stories/a-conversation-with-oscar.jpg',
-        '/assets/img/stories/the-julian-case.jpg',
-        '/assets/img/stories/random.jpg',
-        '/assets/img/stories/ero.jpg',
-        '/assets/img/stories/always-right.jpg',
-        '/assets/img/stories/friends.jpg',
-        '/assets/img/stories/lazy-writer.jpg',
-        '/assets/img/stories/ei.jpg',
-        '/assets/img/stories/circus.jpg',
-        '/assets/img/stories/particelle.jpg'
-      ];
+      var imgs = [{% for story in collections.stories %}{% if story.data.image %}'{{ story.data.image }}',{% endif %}{% endfor %}{% for post in collections.posts %}{% if post.data.image %}'{{ post.data.image }}',{% endif %}{% endfor %}];
+      if (!imgs.length) return;
       var url = imgs[Math.floor(Math.random() * imgs.length)];
       document.getElementById('page-bg').style.backgroundImage = 'url("' + url + '")';
     })();

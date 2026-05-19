@@ -32,19 +32,23 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.1;
+  opacity: 0.2;
   pointer-events: none;
   z-index: 0;
-  transition: background-image 0.3s ease;
+  transition: none;
 }
 
 header, main, footer { position: relative; z-index: 1; }
 
 /* ── Nav ── */
 header {
-  background: var(--bg2);
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 1.25rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 nav {
   max-width: 1140px;
@@ -100,6 +104,8 @@ main {
 
 /* ── Footer ── */
 footer {
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(12px);
   border-top: 1px solid var(--border);
   padding: 1.5rem 2rem;
   text-align: center;
@@ -112,7 +118,8 @@ footer a:hover { color: var(--blue); }
 
 /* ── Hero ── */
 .hero {
-  background: var(--bg2);
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 3.5rem 2rem;
@@ -137,7 +144,7 @@ footer a:hover { color: var(--blue); }
   margin-bottom: 1rem;
   line-height: 1.2;
 }
-.hero h1::before { content: "function "; color: var(--green); font-size: 0.75em; }
+.hero h1::before { content: "person "; color: var(--green); font-size: 0.75em; }
 .hero h1::after  { content: "() {"; color: var(--muted); font-size: 0.75em; }
 .hero p {
   color: var(--muted);
@@ -191,10 +198,11 @@ footer a:hover { color: var(--blue); }
 .posts-container { display: flex; flex-direction: column; gap: 1.5rem; }
 
 .post-card {
-  background: var(--bg2);
+  background: rgba(22, 27, 34, 0.6);
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
+  backdrop-filter: blur(12px);
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   position: relative;
 }
@@ -254,7 +262,8 @@ footer a:hover { color: var(--blue); }
 /* ── Sidebar ── */
 .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
 .sidebar-card {
-  background: var(--bg2);
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1.25rem;
@@ -289,7 +298,8 @@ footer a:hover { color: var(--blue); }
 
 /* ── Single post ── */
 .post-single {
-  background: var(--bg2);
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 2rem;
