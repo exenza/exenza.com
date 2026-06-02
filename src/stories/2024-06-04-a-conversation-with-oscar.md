@@ -6,16 +6,14 @@ image: /assets/img/stories/a-conversation-with-oscar.jpg
 storyType: short story
 ---
 
-"What does a writer need most?" I asked.
+"What a writer needs, Max?" Oscar asked with a smirk.
 
-"A pen," I offered, before he could answer.
+"A pen?" I offered without much thought.
 
-Oscar looked at me with the patience of someone who has spent a lifetime surrounded by people saying the wrong things with great confidence.
+Oscar looked at me with quiet contempt. Shallow and small minded, his expression said, before his mouth caught up.
 
-"No."
+I tried again: "Words?"
 
-"Words, then."
+A long deep breath.
 
-He set down his glass. He adjusted himself in the chair as though the subject deserved better posture.
-
-"What a writer needs, Max," he said, "is an audience."
+"What a writer needs, Max, it's a an audience."
