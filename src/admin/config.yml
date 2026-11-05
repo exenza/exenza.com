@@ -27,7 +27,7 @@ collections:
           - { label: Short Story, value: short story }
           - { label: Poem, value: poem }
           - { label: Poesia (Italian), value: poesia }
-      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: true, required: false }
       - { label: Body, name: body, widget: markdown }
 
   - name: blog
@@ -46,7 +46,7 @@ collections:
         widget: list
         required: false
         hint: "Each tag on a new line"
-      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: true, required: false }
       - { label: Body, name: body, widget: markdown }
 
   - name: pages
