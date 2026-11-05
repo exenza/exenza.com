@@ -17,24 +17,29 @@ module.exports = function(eleventyConfig) {
     return stripped.substring(0, 200) + (stripped.length > 200 ? "…" : "");
   });
 
-  // Collect all unique postTags across posts
+  // Posts collection — excludes drafts
+  eleventyConfig.addCollection("posts", (collectionApi) => {
+    return collectionApi.getFilteredByTag("posts").filter(item => !item.data.draft);
+  });
+
+  // Collect all unique postTags across published posts
   eleventyConfig.addCollection("postTagList", (collectionApi) => {
     const tagSet = new Set();
-    collectionApi.getFilteredByTag("posts").forEach(item => {
+    collectionApi.getFilteredByTag("posts").filter(item => !item.data.draft).forEach(item => {
       (item.data.postTags || []).forEach(tag => tagSet.add(tag));
     });
     return [...tagSet].sort();
   });
 
-  // Stories collection
+  // Stories collection — excludes drafts
   eleventyConfig.addCollection("stories", (collectionApi) => {
-    return collectionApi.getFilteredByTag("stories");
+    return collectionApi.getFilteredByTag("stories").filter(item => !item.data.draft);
   });
 
-  // Collect all unique storyType values across stories
+  // Collect all unique storyType values across published stories
   eleventyConfig.addCollection("storyTypeList", (collectionApi) => {
     const typeSet = new Set();
-    collectionApi.getFilteredByTag("stories").forEach(item => {
+    collectionApi.getFilteredByTag("stories").filter(item => !item.data.draft).forEach(item => {
       if (item.data.storyType) typeSet.add(item.data.storyType);
     });
     return [...typeSet].sort();
