@@ -9,6 +9,7 @@ postTags:
   - hermes
   - agent
   - home lab
+draft: true
 ---
 
 Since adopting AI at home I have deepened my reliance on it to manage my home lab, and I'm thought would be good to share my thoughts on it.
